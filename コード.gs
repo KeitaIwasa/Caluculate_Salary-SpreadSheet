@@ -4,12 +4,11 @@ function calculateSalary() {
   var hourlyRate = settingsSheet.getRange("B2").getValue(); // 通常の時給
   var nightRate = settingsSheet.getRange("B3").getValue(); // 深夜時給
   var transportation = settingsSheet.getRange("B4").getValue(); // 交通費
-  var eventName = settingsSheet.getRange("B5").getValue(); // アルバイトのイベント名
   var calendar = CalendarApp.getDefaultCalendar();
   startDate = new Date('2020-01-01');
   endDate = new Date();
   endDate.setMonth(endDate.getMonth() + 1)
-  var allEvents = calendar.getEvents(startDate, endDate, {search: eventName});
+  var allEvents = calendar.getEvents(startDate, endDate, {search: '-'});
 
   var eventsByYear = {};
   allEvents.forEach(function(event) {
