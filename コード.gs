@@ -13,7 +13,7 @@ function calculateSalary() {
 
   var eventsByYear = {};
   allEvents.forEach(function(event) {
-    if (/^\d+-\d+(\.\d+)?$/.test(title)) {
+    if (/\d+(\.\d+)?-\d+(\.\d+)?/.test(title)) {
       var year = event.getStartTime().getFullYear();
       if (!eventsByYear[year]) {
         eventsByYear[year] = [];
