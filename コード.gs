@@ -12,7 +12,7 @@ function calculateSalary() {
 
   var eventsByYear = {};
   allEvents.forEach(function(event) {
-    if (/\d+(\.\d+)?-\d+(\.\d+)?/.test(event.getTitle())) {
+    if (/\d+(\.\d+)?-\d+(\.\d+)?/.test(event.getTitle()) || /\d+(\.\d+)?-L/.test(event.getTitle())) {
       var year = event.getStartTime().getFullYear();
       if (!eventsByYear[year]) {
         eventsByYear[year] = [];
@@ -40,7 +40,12 @@ function calculateSalary() {
         var eventHours = event.getTitle().match(/\d+(\.\d+)?/g);
         var start = parseFloat(eventHours[0]);
         var startTimestamp = event.getStartTime();
-        var end = parseFloat(eventHours[1]);
+        if (/\d+(\.\d+)?-\d+(\.\d+)?/.test(event.getTitle())) {
+          var end = parseFloat(eventHours[1]);
+        } else if (/\d+(\.\d+)?-L/.test(event.getTitle())) {
+          var end = 23.5;
+        }
+        
         if (startTimestamp.getFullYear() == year && startTimestamp.getMonth() == month) {
           var date = startTimestamp.toDateString();
           totalDays.add(date);
