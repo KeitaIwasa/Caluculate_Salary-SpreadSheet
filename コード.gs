@@ -13,7 +13,7 @@ function calculateSalary() {
 
   var eventsByYear = {};
   allEvents.forEach(function(event) {
-    if (/\d+(\.\d+)?-\d+(\.\d+)?/.test(title)) {
+    if (/\d+(\.\d+)?-\d+(\.\d+)?/.test(event.getTitle())) {
       var year = event.getStartTime().getFullYear();
       if (!eventsByYear[year]) {
         eventsByYear[year] = [];
@@ -38,26 +38,26 @@ function calculateSalary() {
       var totalBreakHours = 0;
 
       eventsByYear[year].forEach(function(event) {
-        var start = event.getStartTime();
-        var end = event.getEndTime();
-        if (start.getFullYear() == year && start.getMonth() == month) {
-          var date = start.toDateString();
+        var eventHours = event.getTitle().match(/\d+(\.\d+)?/g);
+        var start = parseFloat(eventHours[0]);
+        var startTimestamp = event.getStartTime();
+        var end = parseFloat(eventHours[1]);
+        if (startTimestamp.getFullYear() == year && startTimestamp.getMonth() == month) {
+          var date = startTimestamp.toDateString();
           totalDays.add(date);
 
-          var durationMinutes = (end - start) / (1000 * 60);
           var breakTime = parseInt(event.getDescription()) || 0;
           totalBreakHours += breakTime/60;
-          var durationHours = durationMinutes / 60;
+          var durationHours = end-start;
 
           while (durationHours > 0) {
-            var hour = start.getHours();
-            if (hour >= 22 || hour < 5) {
+            if (start >= 22 || start < 5) {
               nightHours += durationHours >= 1 ? 1 : durationHours;
             } else {
               dayHours += durationHours >= 1 ? 1 : durationHours;
             }
             durationHours--;
-            start.setHours(start.getHours() + 1);
+            start++;
           }
         }
       });
