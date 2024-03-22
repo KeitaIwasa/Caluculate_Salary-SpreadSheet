@@ -52,16 +52,12 @@ function calculateSalary() {
 
           var breakTime = parseInt(event.getDescription()) || 0;
           totalBreakHours += breakTime/60;
-          var durationHours = end-start;
 
-          while (durationHours > 0) {
-            if (start >= 22) {
-              nightHours += durationHours >= 1 ? 1 : durationHours;
-            } else {
-              dayHours += durationHours >= 1 ? 1 : durationHours;
-            }
-            durationHours--;
-            start++;
+          if (end > 22) {
+            nightHours = nightHours + (end-22);
+            dayHours = dayHours + (22-start);
+          } else {
+            dayHours = dayHours + (end - start);
           }
         }
       });
