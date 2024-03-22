@@ -49,15 +49,11 @@ function calculateSalary() {
           totalBreakHours += breakTime/60;
           var durationHours = durationMinutes / 60;
 
-          while (durationHours > 0) {
-            var hour = start.getHours();
-            if (hour >= 22 || hour < 5) {
-              nightHours += durationHours >= 1 ? 1 : durationHours;
-            } else {
-              dayHours += durationHours >= 1 ? 1 : durationHours;
-            }
-            durationHours--;
-            start.setHours(start.getHours() + 1);
+          if (end.getHours() > 22) {
+            nightHours = nightHours + (end.getHours() - 22);
+            dayHours = dayHours + (22 - start.getHours());
+          } else {
+            dayHours = (end - start) / (1000 * 60 * 60);
           }
         }
       });
