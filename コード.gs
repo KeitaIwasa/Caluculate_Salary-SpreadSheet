@@ -4,7 +4,7 @@ function calculateSalary() {
   var hourlyRate = settingsSheet.getRange("B2").getValue(); // 通常の時給
   var nightRate = settingsSheet.getRange("B3").getValue(); // 深夜時給
   var transportation = settingsSheet.getRange("B4").getValue(); // 交通費
-  var calendar = CalendarApp.getCalendarById('wonyune1021@gmail.com');
+  var calendar = CalendarApp.getCalendarById('emailaddress@gmail.com');
   startDate = new Date('2020-01-01');
   endDate = new Date();
   endDate.setMonth(endDate.getMonth() + 1)
