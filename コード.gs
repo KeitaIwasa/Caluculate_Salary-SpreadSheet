@@ -4,7 +4,7 @@ function calculateSalary() {
   var hourlyRate = settingsSheet.getRange("B2").getValue(); // 通常の時給
   var nightRate = settingsSheet.getRange("B3").getValue(); // 深夜時給
   var transportation = settingsSheet.getRange("B4").getValue(); // 交通費
-  var calendar = CalendarApp.getCalendarById('keita030909@gmail.com');
+  var calendar = CalendarApp.getCalendarById('emailadress@gmail.com');
   startDate = new Date('2020-01-01');
   endDate = new Date();
   endDate.setMonth(endDate.getMonth() + 1)
@@ -78,6 +78,7 @@ function calculateSalary() {
       salarySheet.getRange("C" + (month + 3)).setValue(totalHours.toFixed(2)); //勤務時間を出力
       salarySheet.getRange('D' + (month + 3)).setValue(nightHours.toFixed(2)); //深夜勤務時間を出力
       salarySheet.getRange('E' + (month + 3)).setValue(Math.round(totalDays.size)); //勤務日数を出力
+      salarySheet.getRange('F' + (month + 3)).setValue(totalBreakHours.toFixed(2)); //休憩時間
 
     }
   }
