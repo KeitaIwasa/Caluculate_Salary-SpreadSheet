@@ -1,8 +1,4 @@
-以下に、GAS関数`calculateSalary`のREADMEを日本語で作成しました。
-
----
-
-# calculateSalary GAS関数
+# calculateSalary
 
 このGoogle Apps Script (GAS) 関数は、カレンダーイベントに基づいて給与計算を自動化します。設定シートから時給、深夜時給、交通費、イベント名を取得し、指定されたイベント名を含むカレンダーイベントを基に、各月の給与を計算し、スプレッドシートに出力します。
 
